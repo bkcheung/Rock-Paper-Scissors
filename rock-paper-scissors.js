@@ -27,13 +27,44 @@ function singlePlay(playerSelection, computerSelection){
             result = 'You win, Scissors beat Paper';
         }
     }
-    else{ 
+    else if(playerSelection==='Paper'){ 
         if(computerSelection==='Rock'){
             result = 'You win! Paper beats Rock';
         }
         else if(computerSelection==='Scissors'){
             result = 'You lose, paper loses to Scissors';
         }
+    }
+    else{
+        result = 'Please enter a valid selection.';
+    }
+
+    console.log(result);
+    return result;
+}
+
+function game(){
+    let winCount = 0;
+    let result;
+
+    for(i=0; i<5; i++){
+        playerSelection = window.prompt('Rock, Paper, or Scissors?');
+        let gameResult = singlePlay(playerSelection, computerPlay());
+        if(gameResult.slice(0,7)==='You win'){
+            winCount++;
+        }
+        // Don't count invalid entries, decrement counter
+        else if(gameResult.slice(0,6)==='Please'){
+            --i;
+        }
+    }
+    console.log(winCount);
+    if(winCount>2){
+        result = `You won ${winCount} out of 5 games, congrats!`;
+    }
+    else{
+        loseCount = 5 - winCount;
+        result = `You lost ${loseCount} out of 5 games, try again next time!`;
     }
     console.log(result);
     return result;
