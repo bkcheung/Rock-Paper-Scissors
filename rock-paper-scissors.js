@@ -1,10 +1,14 @@
+const container = document.querySelector('#container');
+const resultWindow = document.createElement('div');
+resultWindow.classList.add('results');
+
 function computerPlay() {
     let options = ['Rock', 'Paper', 'Scissors'];
     let computerSelection = options[Math.floor(Math.random()*3)];
     return computerSelection;
 }
 
-function singlePlay(playerSelection, computerSelection){
+function playRound(playerSelection, computerSelection){
     playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
     let result;
 
@@ -40,25 +44,28 @@ function singlePlay(playerSelection, computerSelection){
     }
 
     console.log(result);
+    resultWindow.textContent = result;
+    container.append(resultWindow);
     return result;
 }
 
 function game(){
     let winCount = 0;
     let result;
+    para.textContent = 'Final Result: ';
 
-    for(i=0; i<5; i++){
-        playerSelection = window.prompt('Rock, Paper, or Scissors?');
-        let gameResult = singlePlay(playerSelection, computerPlay());
-        if(gameResult.slice(0,7)==='You win'){
-            winCount++;
-        }
-        // Don't count invalid entries, decrement counter
-        else if(gameResult.slice(0,6)==='Please'){
-            --i;
-        }
-    }
-    console.log(winCount);
+    // for(i=0; i<5; i++){
+    //     playerSelection = window.prompt('Rock, Paper, or Scissors?');
+    //     let gameResult = playRound(playerSelection, computerPlay());
+
+    //     if(gameResult.slice(0,7)==='You win'){
+    //         winCount++;
+    //     }
+    //     // Don't count invalid entries, decrement counter
+    //     else if(gameResult.slice(0,6)==='Please'){
+    //         --i;
+    //     }
+    // }
     if(winCount>2){
         result = `You won ${winCount} out of 5 games, congrats!`;
     }
@@ -66,6 +73,12 @@ function game(){
         loseCount = 5 - winCount;
         result = `You lost ${loseCount} out of 5 games, try again next time!`;
     }
-    console.log(result);
     return result;
 }
+
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach(button => button.addEventListener('click', function(e){
+    let playerSelection = e.target.id;
+    playRound(playerSelection, computerPlay());
+}))
