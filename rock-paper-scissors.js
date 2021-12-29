@@ -1,6 +1,5 @@
-const container = document.querySelector('#container');
-const resultWindow = document.createElement('div');
-resultWindow.classList.add('results');
+let playerScore = 0;
+let computerScore = 0;
 
 function computerPlay() {
     let options = ['Rock', 'Paper', 'Scissors'];
@@ -15,70 +14,74 @@ function playRound(playerSelection, computerSelection){
     if(playerSelection===computerSelection){
         result = `It\'s a tie! Computer also selected ${computerSelection}.`;
     }
-    else if(playerSelection==='Rock'){
-        if(computerSelection==='Scissors'){
-            result = 'You win! Rock beats Scissors';
-        }
-        else if(computerSelection==='Paper'){
-            result = 'You lose, Rock loses to Paper';
-        }
+    else if(
+        (playerSelection==='Rock' && computerSelection==='Scissors') ||
+        (playerSelection==='Paper' && computerSelection==='Rock') ||
+        (playerSelection==='Scissors' && computerSelection==='Paper')){
+        result = `You win! ${playerSelection} beats ${computerSelection}`;
+        playerScore++;
     }
-    else if(playerSelection==='Scissors'){
-        if(computerSelection==='Rock'){
-            result = 'You lose! Scissors loses to Rock';
-        }
-        else if(computerSelection==='Paper'){
-            result = 'You win, Scissors beat Paper';
-        }
+    else if(
+        (playerSelection==='Rock' && computerSelection==='Paper') ||
+        (playerSelection==='Paper' && computerSelection==='Scissors') ||
+        (playerSelection==='Scissors' && computerSelection==='Rock')){
+        result = `You lose, ${playerSelection} loses to ${computerSelection}`;
+        computerScore++;
     }
-    else if(playerSelection==='Paper'){ 
-        if(computerSelection==='Rock'){
-            result = 'You win! Paper beats Rock';
-        }
-        else if(computerSelection==='Scissors'){
-            result = 'You lose, paper loses to Scissors';
-        }
-    }
-    else{
-        result = 'Please enter a valid selection.';
-    }
-
-    console.log(result);
     resultWindow.textContent = result;
+    scoreCounter.textContent = `Player score: ${playerScore}, Computer score: ${computerScore}`;
+
     container.append(resultWindow);
+    container.append(scoreCounter);
+    isGameOver(playerScore, computerScore);
+
     return result;
 }
 
-function game(){
-    let winCount = 0;
-    let result;
-    para.textContent = 'Final Result: ';
-
-    // for(i=0; i<5; i++){
-    //     playerSelection = window.prompt('Rock, Paper, or Scissors?');
-    //     let gameResult = playRound(playerSelection, computerPlay());
-
-    //     if(gameResult.slice(0,7)==='You win'){
-    //         winCount++;
-    //     }
-    //     // Don't count invalid entries, decrement counter
-    //     else if(gameResult.slice(0,6)==='Please'){
-    //         --i;
-    //     }
-    // }
-    if(winCount>2){
-        result = `You won ${winCount} out of 5 games, congrats!`;
+function isGameOver(playerScore, computerScore){
+    if (playerScore <5 && computerScore <5) return;
+    else if(playerScore>=5){
+        winnerOutput.textContent='You win!';
     }
     else{
-        loseCount = 5 - winCount;
-        result = `You lost ${loseCount} out of 5 games, try again next time!`;
+        winnerOutput.textContent='Computer wins, try again next time!';
     }
-    return result;
+
+    resetButton.classList.add('show');
+    resetButton.textContent = 'Reset';
+
+    container.append(winnerOutput);
+    container.append(resetButton);
+
 }
 
-const buttons = document.querySelectorAll('button');
+function restart(){
+    playerScore = 0;
+    computerScore = 0;
+
+    scoreCounter.textContent = `Player score: ${playerScore}, Computer score: ${computerScore}`;
+    resultWindow.textContent ='';
+    winnerOutput.textContent ='';
+    resetButton.classList.remove('show');
+
+    container.append(resultWindow);
+    container.append(scoreCounter);
+    container.append(winnerOutput);
+}
+
+const container = document.querySelector('#container');
+const scoreCounter = document.createElement('div');
+const resultWindow = document.createElement('div');
+const winnerOutput = document.createElement('div');
+const resetButton = document.createElement('button')
+
+const buttons = document.querySelectorAll('.option');
 
 buttons.forEach(button => button.addEventListener('click', function(e){
     let playerSelection = e.target.id;
     playRound(playerSelection, computerPlay());
 }))
+
+resetButton.addEventListener('click', ()=>{
+    restart();
+})
