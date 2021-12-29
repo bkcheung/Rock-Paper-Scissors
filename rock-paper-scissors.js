@@ -29,10 +29,10 @@ function playRound(playerSelection, computerSelection){
         computerScore++;
     }
     resultWindow.textContent = result;
-    scoreCounter.textContent = `Player score: ${playerScore}, Computer score: ${computerScore}`;
+    playerScoreCount.textContent = playerScore;
+    compScoreCount.textContent = computerScore;
 
     container.append(resultWindow);
-    container.append(scoreCounter);
     isGameOver(playerScore, computerScore);
 
     return result;
@@ -59,21 +59,21 @@ function restart(){
     playerScore = 0;
     computerScore = 0;
 
-    scoreCounter.textContent = `Player score: ${playerScore}, Computer score: ${computerScore}`;
     resultWindow.textContent ='';
     winnerOutput.textContent ='';
     resetButton.classList.remove('show');
 
     container.append(resultWindow);
-    container.append(scoreCounter);
     container.append(winnerOutput);
 }
 
 const container = document.querySelector('#container');
-const scoreCounter = document.createElement('div');
 const resultWindow = document.createElement('div');
 const winnerOutput = document.createElement('div');
 const resetButton = document.createElement('button')
+
+const playerScoreCount = document.querySelector('.playerScore');
+const compScoreCount = document.querySelector('.computerScore');
 
 const buttons = document.querySelectorAll('.option');
 
