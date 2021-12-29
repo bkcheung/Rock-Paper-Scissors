@@ -7,21 +7,46 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Rock Paper Scissors</title>
+        <title>The Mysterious Box</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+        <h1 class = "header">Rock Paper Scissors — Treasure!</h1>
+        <div class = main>
+            <div class = "story"> Upon clearing the final level of the dungeon, you push open the heavy door of the treasure room. <br>
+                The room is filled with heaps of strange metallic boxes, each with a complex mechanical interlock system. <br>
+                Curious, you pick up a dusty box and knock on the display. <br> <br> You hear a gentle whir as text appears on the display. <br> <br></div>
+            <div class = "storyItalic">Lock engaged. Win Rock Paper Scissors to unlock; first to 5 wins.</div>
+            
+            <h4 class = "prompt">Make your selection:</h4>
+        </div> 
 
-        <h1>Rock Paper Scissors!</h1>
-        <h4>Make your selection:</h4>
-        <button class = option id="rock">Rock</button>
-        <button class = option id="paper">Paper</button>
-        <button class = option id="scissors">Scissors</button>
-        <div id=container></div>
+        <div id = container height=200px width=auto></div>   
+        
+        <div class = "score">
+            <div class = "player">
+                <div class = "pScore">Your Score</div> 
+                <br>
+                <div class = "playerScore">0</div>
+            </div>
+            <div class = "computer">
+                <div class = "cScore">Computer</div>
+                <br>
+                <div class = "computerScore">0</div>
+            </div>
+        </div>
+
+        <div class = gameOptions>
+            <button class = "option" id="rock">🪨</button>
+            <button class = "option" id="paper">🗞</button>
+            <button class = "option" id="scissors">✂️</button>
+        </div>
+        
+        <div class = "footer">Copyright © bkcheung 2021</div>
 
         <script src="rock-paper-scissors.js"></script>
     </body>
