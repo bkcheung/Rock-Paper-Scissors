@@ -7,7 +7,7 @@ function beginAnimation(){
     for (let i=0; i < toAnimate.length; i++){
         setTimeout(function () {
             toAnimate[i].classList.add('animateIn');
-        }, (1000*i));
+        }, (200*i));
     }
 }
 function computerPlay() {
@@ -88,8 +88,8 @@ function randomPrize(){
 
 
 function isGameOver(playerScore, computerScore){
-    if (playerScore <5 && computerScore <5) return;
-    else if(playerScore>=5){
+    if (playerScore <3 && computerScore <3) return;
+    else if(playerScore>=3){
         
         popupText.textContent = `You win! With a soft pop, the lid swings open. `+
                                 `Inside, you obtain: `;

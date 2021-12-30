@@ -57,6 +57,7 @@ body{
 .option {
     font-size: 20vw;
     background-color: rgba(255, 247, 247, 0.3);
+    border: 1px groove black;
     border-radius: 10px;
     padding:10px;
     margin: 3vw;
@@ -77,8 +78,9 @@ body{
     box-sizing: border-box;
     padding: 20px;
     margin:20px;
+    border: 1px groove black;
     border-radius: 15px;
-    
+   
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -181,7 +183,7 @@ body{
     opacity: 0;
 }
 .animateIn{
-    animation: fadeIn 0.75s;
+    animation: fadeIn 1s;
     opacity: 1;
 }
 .animateOut{
