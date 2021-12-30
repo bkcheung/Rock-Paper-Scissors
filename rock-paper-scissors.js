@@ -6,12 +6,8 @@ function beginAnimation(){
     const toAnimate = document.querySelectorAll('.toAnimate');
     for (let i=0; i < toAnimate.length; i++){
         setTimeout(function () {
-            toAnimate[i].classList.add('animate');
-        }, (1500*i));
-        toAnimate[i].addEventListener('animationend', ()=>{
-            toAnimate[i].classList.remove('toAnimate');
-            toAnimate[i].classList.remove('animate');
-        })
+            toAnimate[i].classList.add('animateIn');
+        }, (1000*i));
     }
 }
 function computerPlay() {
@@ -96,7 +92,7 @@ function isGameOver(playerScore, computerScore){
     else if(playerScore>=5){
         
         popupText.textContent = `You win! With a soft pop, the lid swings open. `+
-                                `Inside, you obtain the fruit of your labour. `;
+                                `Inside, you obtain: `;
         randomPrize();
         popupReset.textContent = 'Open another box!'
     }
