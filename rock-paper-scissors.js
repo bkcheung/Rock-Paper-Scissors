@@ -41,39 +41,38 @@ function playRound(playerSelection, computerSelection){
 function isGameOver(playerScore, computerScore){
     if (playerScore <5 && computerScore <5) return;
     else if(playerScore>=5){
-        winnerOutput.textContent='You win!';
+        popupText.textContent = 'You win!';
     }
     else{
-        winnerOutput.textContent='Computer wins, try again next time!';
+        popupText.textContent = 'Computer wins, try again next time!';
     }
-
-    resetButton.classList.add('show');
-    resetButton.textContent = 'Reset';
-
-    container.append(winnerOutput);
-    container.append(resetButton);
-
+    showPopup();
 }
 
 function restart(){
     playerScore = 0;
     computerScore = 0;
-
     resultWindow.textContent ='';
-    winnerOutput.textContent ='';
-    resetButton.classList.remove('show');
 
+    playerScoreCount.textContent = playerScore;
+    compScoreCount.textContent = computerScore;
     container.append(resultWindow);
-    container.append(winnerOutput);
+
+    popup.classList.toggle('show');
 }
 
-const container = document.querySelector('#container');
-const resultWindow = document.createElement('div');
-const winnerOutput = document.createElement('div');
-const resetButton = document.createElement('button')
+function showPopup() {
+    popup.classList.add('show');
+}
 
+const container = document.querySelector('.container');
+const resultWindow = document.createElement('div');
 const playerScoreCount = document.querySelector('.playerScore');
 const compScoreCount = document.querySelector('.computerScore');
+
+const popup = document.querySelector('.popup');
+const popupText = document.querySelector('.popupText');
+const popupReset = document.querySelector('.reset');
 
 const buttons = document.querySelectorAll('.option');
 
@@ -82,6 +81,4 @@ buttons.forEach(button => button.addEventListener('click', function(e){
     playRound(playerSelection, computerPlay());
 }))
 
-resetButton.addEventListener('click', ()=>{
-    restart();
-})
+popupReset.addEventListener('click', () =>restart());
