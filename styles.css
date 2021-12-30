@@ -23,7 +23,7 @@ body{
 
 .story, .mainText, .player, .computer {
     font-weight: 300;
-    padding: 10px;
+    padding: 10px 30px 10px 30px;
     font-size: 5vw;
     line-height: 1.5;
 }
