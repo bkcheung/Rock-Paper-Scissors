@@ -8,8 +8,13 @@ function beginAnimation(){
         setTimeout(function () {
             toAnimate[i].classList.add('animateIn');
         }, (200*i));
+        toAnimate[i].addEventListener('animationend',() => {
+            toAnimate[i].classList.remove('toAnimate');
+            toAnimate[i].classList.remove('animateIn');
+        })
     }
 }
+
 function computerPlay() {
     let options = ['Rock', 'Paper', 'Scissors'];
     let computerSelection = options[Math.floor(Math.random()*options.length)];
@@ -44,7 +49,8 @@ function playRound(playerSelection, computerSelection){
     return result;
 }
 
-function updateScores(result, playerScore, computerScore, playerSelection, computerSelection){
+function updateIcon(playerSelection, computerSelection){
+
     switch(playerSelection){
         case 'Rock':
             pIcon.textContent = '🪨';
@@ -67,7 +73,10 @@ function updateScores(result, playerScore, computerScore, playerSelection, compu
             cIcon.textContent = '✂️';
             break;
     }
+}
 
+function updateScores(result, playerScore, computerScore, playerSelection, computerSelection){
+    updateIcon(playerSelection, computerSelection)
     container.textContent = result;
     playerScoreCount.textContent = `Player: ${playerScore}`;
     compScoreCount.textContent = `Box: ${computerScore}`;
@@ -90,7 +99,6 @@ function randomPrize(){
 function isGameOver(playerScore, computerScore){
     if (playerScore <3 && computerScore <3) return;
     else if(playerScore>=3){
-        
         popupText.textContent = `You win! With a soft pop, the lid swings open. `+
                                 `Inside, you obtain: `;
         randomPrize();
@@ -99,10 +107,9 @@ function isGameOver(playerScore, computerScore){
     else{
         popupText.textContent = 'You lose, the lock doesn\'t budge.';
         popupReset.textContent = 'Try again.'
-        prizeIcon.textContent = '🤷🏻‍♀️';
+        prizeIcon.textContent = '😔';
         prize.textContent = 'TRY AGAIN';
         prizeContainer.classList.add('show');
-
     }
     popup.classList.add('show');
 }
@@ -139,7 +146,7 @@ const prizeContainer = document.querySelector('.prizeContainer');
 
 const buttons = document.querySelectorAll('.option');
 
-buttons.forEach(button => button.addEventListener('click', function(e){
+buttons.forEach(button => button.addEventListener('click', function(e){    
     let playerSelection = e.target.id;
     playRound(playerSelection, computerPlay());
 }))

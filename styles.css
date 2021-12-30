@@ -23,7 +23,7 @@ body{
 
 .story, .mainText, .player, .computer {
     font-weight: 300;
-    padding: 15px 30px 15px 30px;
+    padding: 10px;
     font-size: 5vw;
     line-height: 1.5;
 }
@@ -38,6 +38,7 @@ body{
 .mainText {
     text-align: center;
     min-height: 50px;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -52,6 +53,7 @@ body{
     flex-flow: row nowrap;
     justify-content: center;
     flex:1;
+    margin-bottom: 15px;
 }
 
 .option {
@@ -76,8 +78,8 @@ body{
     max-width: 150px;
     height: auto;
     box-sizing: border-box;
-    padding: 20px;
-    margin:20px;
+    padding: 10px;
+    margin:10px;
     border: 1px groove black;
     border-radius: 15px;
    
@@ -89,8 +91,7 @@ body{
 .pIcon, .cIcon {
     font-size: 20vw;
 }
-
-
+ 
 .popup{
     visibility: hidden;
     display: flex;
@@ -115,7 +116,7 @@ body{
 }
 
 .popup .popupText{
-    color: #fff;
+    color: rgb(0, 0, 0);
     font-size: 5vw;
     text-align: center;
     display: flex;
@@ -186,17 +187,7 @@ body{
     animation: fadeIn 1s;
     opacity: 1;
 }
-.animateOut{
-    animation: fadeOut 0.75s;
-    opacity: 0;
-}
-
   @keyframes fadeIn {
     from {opacity: 0;}
     to {opacity:1 ;}
-  }
-
-  @keyframes fadeOut {
-    from {opacity:1;}
-    to {opacity:0;}
   }
