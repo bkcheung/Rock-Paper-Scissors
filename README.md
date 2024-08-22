@@ -1,6 +1,5 @@
-# rock-paper-scissors
+# Rock Paper Scissors
 Rock paper scissors game where you can play against the computer.
 Uses HTML, CSS, and Javascript with animations.
 
-See live preview here!
-[Click me 👈🏻](https://bkcheung.github.io/rock-paper-scissors/)
+Play [here](https://bkcheung.github.io/Rock-Paper-Scissors/)!
